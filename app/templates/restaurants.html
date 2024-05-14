@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurants</title>
+</head>
+<body>
+
+    {% include "header.html" %}
+
+    <div>
+        {% for r in restaurant %}
+        <div>
+            <h3>{{r.name}}</h3>
+            <p>{{ r.address }}</p>
+            <p>{{ r.email }}</p>
+            <p>{{ r.phone }}</p>
+                {% if r.capacity <= 5 %}
+                    <p>{{ r.capacity }}</p>
+                {% else %}
+                    <p>No capacity</p>
+                {% endif %}
+            <a class="btn btn-primary" href="{% url 'restaurant details' restaurant_id=r.id %}">Details</a>
+            <a class="btn btn-secondary" href="{% url 'restaurant edit' restaurant_id=r.id %}">Edit</a>
+            <a class="btn btn-danger" href="{% url 'restaurant delete' restaurant_id=r.id %}">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <br>
+
+    <a class="btn btn-primary" href="{% url 'restaurant add' %}" >Add restaurant</a>
+
+</body>
+</html>

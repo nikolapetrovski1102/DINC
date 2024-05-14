@@ -1,0 +1,9 @@
+{% include 'header.html' %}
+
+{% block content %} 
+    <form action="/restaurant_add/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
